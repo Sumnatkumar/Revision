@@ -1,0 +1,96 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        th {
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+    <title>Sort Table Data With JS</title>
+</head>
+<body>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Name</th>
+                <th onclick="sortTable(1)">Price</th>
+                <th onclick="sortTable(2)">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pizza</td>
+                <td>120</td>
+                <td>Fast Food</td>
+            </tr>
+            <tr>
+                <td>Burger</td>
+                <td>220</td>
+                <td>Fast Food</td>
+            </tr>
+            <tr>
+                <td>Pasta</td>
+                <td>100</td>
+                <td>Italian</td>
+            </tr>
+            <tr>
+                <td>Pizza</td>
+                <td>120</td>
+                <td>Fast Food</td>
+            </tr>
+            <tr>
+                <td>Sushi</td>
+                <td>150</td>
+                <td>Japanese</td>
+            </tr>
+            <tr>
+                <td>Salad</td>
+                <td>20</td>
+                <td>Vegetarian</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function sortTable(columnIndex) {
+            const table = document.getElementById("myTable");
+            const rows = Array.from(table.rows).slice(1);
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[columnIndex].innerText.toLowerCase();
+                const cellB = rowB.cells[columnIndex].innerText.toLowerCase();
+
+                if (!isNaN(cellA) && !isNaN(cellB)) {
+                    return Number(cellA) - Number(cellB); // Numeric sort
+                }
+                return cellA.localeCompare(cellB); // Alphabetical sort
+            });
+
+            const tbody = table.tBodies[0];
+            rows.forEach(row => tbody.appendChild(row)); // Append rows in sorted order
+        }
+    </script>
+</body>
+</html>
